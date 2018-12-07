@@ -82,7 +82,7 @@ class DbUtils {
 
   Future<List<Meizi>> getMeiziMen() async {
     var res = await getList("MeiziMen");
-    if (res.length == 0) return null;
+    if (res.length == 0) return List();
     return res.map((m) => Meizi.fromDb(m)).toList();
   }
 
