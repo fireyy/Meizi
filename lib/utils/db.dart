@@ -69,7 +69,7 @@ class DbUtils {
 
   Future<Meizi> getMeizi(String id) async {
     var res = await getOne("MeiziMen", "id = ?", [id]);
-    if (res.length == 0) return null;
+    if (res == null || res.length == 0) return null;
     return Meizi.fromDb(res[0]);
   }
 
