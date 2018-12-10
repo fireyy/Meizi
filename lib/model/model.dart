@@ -7,11 +7,10 @@ class Meizi {
     @required this.id,
     @required this.imageUrl,
     this.favored,
-    this.isExpanded,
   });
 
   String title, thumbUrl, id, imageUrl;
-  bool favored, isExpanded;
+  bool favored;
 
   Meizi.fromJson(Map json)
       : title = json["title"],

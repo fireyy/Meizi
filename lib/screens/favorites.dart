@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meizi/utils/db.dart';
 import 'package:meizi/model/model.dart';
 import 'package:meizi/screens/meiziView.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Favorites extends StatefulWidget {
   @override
@@ -38,19 +39,22 @@ class FavoritesState extends State<Favorites> with DbUtils {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.all(10.0),
-              itemCount: filteredMeizis.length,
-              itemBuilder: (BuildContext context, int index) {
-                return new MeiziView(filteredMeizis[index]);
-              },
-            ),
-          )
-        ],
+      child: new StaggeredGridView.countBuilder(
+        crossAxisCount: 4,
+        itemCount: filteredMeizis.length,
+        itemBuilder: (BuildContext context, int index) => new MeiziView(filteredMeizis[index]),
+        staggeredTileBuilder: (int index) =>
+            new StaggeredTile.count(2, index.isEven ? 2 : 1),
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
       ),
+      // child: ListView.builder(
+      //   padding: EdgeInsets.all(10.0),
+      //   itemCount: filteredMeizis.length,
+      //   itemBuilder: (BuildContext context, int index) {
+      //     return new MeiziView(filteredMeizis[index]);
+      //   },
+      // ),
     );
   }
 }

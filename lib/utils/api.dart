@@ -19,6 +19,10 @@ class HttpUtils {
   }
 
   Future<List<Meizi>> fetchMeizi(String cate, int page) async {
+    /**
+     * Category
+     * All, DaXiong, QiaoTun, HeiSi, MeiTui, QingXin, ZaHui
+     */
     final String responseStr = await get('https://meizi.leanapp.cn/category/$cate/page/$page');
 
     return toMeiziList(responseStr);

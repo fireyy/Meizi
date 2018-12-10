@@ -69,8 +69,8 @@ class DbUtils {
 
   Future<Meizi> getMeizi(String id) async {
     var res = await getOne("MeiziMen", "id = ?", [id]);
-    if (res == null || res.length == 0) return null;
-    return Meizi.fromDb(res[0]);
+    if (res == null) return null;
+    return Meizi.fromDb(res);
   }
 
   Future<List<dynamic>> getList(String table,
