@@ -23,12 +23,15 @@ class HomePage extends StatefulWidget {
   HomeState createState() => HomeState();
 }
 
-class HomeState extends State<HomePage> with HttpUtils, DbUtils, IndicatorFactory {
+class HomeState extends State<HomePage> with HttpUtils, DbUtils, IndicatorFactory, AutomaticKeepAliveClientMixin {
   List<Meizi> meiziMen = List();
   int _page = 1;
   String _cate = 'All';
   RefreshController _refreshController;
   ValueNotifier<double> offsetLis = new ValueNotifier(0.0);
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
