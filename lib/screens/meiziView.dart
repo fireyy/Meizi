@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meizi/utils/db.dart';
 import 'package:meizi/model/model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:photo_view/photo_view.dart';
 
 class MeiziView extends StatefulWidget {
   MeiziView(this.meizi);
@@ -46,14 +47,11 @@ class MeiziViewState extends State<MeiziView> with DbUtils {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: <Widget>[
-          new Hero(
-            tag: meiziState.imageUrl,
-            child: new CachedNetworkImage(
-              imageUrl: meiziState.imageUrl,
-              fit: BoxFit.cover,
-              placeholder: new LinearProgressIndicator(),
-              errorWidget: new Icon(Icons.error),
-            ),
+          new CachedNetworkImage(
+            imageUrl: meiziState.imageUrl,
+            fit: BoxFit.cover,
+            placeholder: new LinearProgressIndicator(),
+            errorWidget: new Icon(Icons.error),
           ),
           new Positioned(
             left: 5,
@@ -97,9 +95,8 @@ class ImagePreViewWidget extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Hero(
-            tag: url,
-            child: CachedNetworkImage(imageUrl:url),
+          child: PhotoView(
+            imageProvider: CachedNetworkImageProvider(url),
           ))));
   }
 }

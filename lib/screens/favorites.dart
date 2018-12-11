@@ -39,21 +39,20 @@ class FavoritesState extends State<Favorites> with DbUtils {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      child: new StaggeredGridView.countBuilder(
-        crossAxisCount: 4,
-        itemCount: filteredMeizis.length,
-        itemBuilder: (BuildContext context, int index) => new MeiziView(filteredMeizis[index]),
-        staggeredTileBuilder: (int index) =>
-            new StaggeredTile.count(2, index.isEven ? 2 : 1),
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 4.0,
+      child: new GridView.count(
+        crossAxisCount: 2,
+        children: new List.generate(filteredMeizis.length, (index) {
+          return new MeiziView(filteredMeizis[index]);
+        }),
       ),
-      // child: ListView.builder(
-      //   padding: EdgeInsets.all(10.0),
+      // child: new StaggeredGridView.countBuilder(
+      //   crossAxisCount: 4,
       //   itemCount: filteredMeizis.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return new MeiziView(filteredMeizis[index]);
-      //   },
+      //   itemBuilder: (BuildContext context, int index) => new MeiziView(filteredMeizis[index]),
+      //   staggeredTileBuilder: (int index) =>
+      //       new StaggeredTile.count(2, index.isEven ? 2 : 1),
+      //   mainAxisSpacing: 4.0,
+      //   crossAxisSpacing: 4.0,
       // ),
     );
   }
